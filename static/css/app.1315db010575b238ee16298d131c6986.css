@@ -20,36 +20,64 @@ li{
 }
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-}/*vue动画公共样式都取出来放这里了*/
-.downslide-enter-active,.downslide-leave-active{
-	transition:transform 0.5s;
 }
-.downslide-enter,.downslide-leave-active{
-	transform:translateY(100%);
+@charset "UTF-8";
+/*
+vue动画公共样式都取出来放这里了
+by https://github.com/derickweng
+*/
+.transstyle, .downslide-enter, .downslide-leave-active, .fade-enter, .fade-leave-active, .topslide-enter, .topslide-leave-active, .rightslide-enter, .rightslide-leave-active, .leftslide-enter, .leftslide-leave-active, .scale-enter, .scale-leave-active {
+  /*为了在使用transition切换时router时，组件之间样式保持位置不相互影响,不过要注意样式width和height继承问题 */
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
-.fade-enter-active,.fade-leave-active{
-	transition:opacity 0.8s;
+.downslide-enter-active, .downslide-leave-active {
+  transition: transform 0.5s;
 }
-.fade-enter,.fade-leave-active{
-	opacity: 0;
+.downslide-enter, .downslide-leave-active {
+  transform: translateY(100%);
 }
-.rightslide-enter-active,.rightslide-leave-active{
-	transition:transform .5s;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s;
 }
-.rightslide-enter,.rightslide-leave-active{
-	transform: translateX(100%);
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
-.leftslide-enter-active,.leftslide-leave-active{
-	transition:transform .5s;
+.topslide-enter-active, .topslide-leave-active {
+  transition: transform .5s;
 }
-.leftslide-enter,.leftslide-leave-active{
-	transform: translateX(-100%);
+.topslide-enter, .topslide-leave-active {
+  transform: translateY(-100%);
 }
-.scale-enter-active,.scale-leave-active{
-	transition:transform .5s;
+.rightslide-enter-active, .rightslide-leave-active {
+  transition: transform .5s;
 }
-.scale-enter,.scale-leave-active {
-	transform: scale(0.8)
+.rightslide-enter, .rightslide-leave-active {
+  transform: translateX(100%);
+}
+.leftslide-enter-active, .leftslide-leave-active {
+  transition: transform .5s;
+}
+.leftslide-enter, .leftslide-leave-active {
+  transform: translateX(-100%);
+}
+.scale-enter-active, .scale-leave-active {
+  transition: transform .5s;
+}
+.scale-enter, .scale-leave-active {
+  transform: scale(0.8);
+}
+@keyframes topslide {
+from {
+    transform: translateY(-100%);
+}
+to {
+    transform: translateY(0);
+}
 }
 
 @charset "UTF-8";
@@ -182,7 +210,7 @@ html {
 .icon-back {
   font-size: 1rem;
   width: 2.2em;
-  height: 0.1em;
+  height: 0.2em;
   background-color: currentColor;
   display: inline-block;
   position: relative;
@@ -240,7 +268,7 @@ html {
 
 .topheader[data-v-29d64576] {
   width: 100%;
-  height: 4rem;
+  height: 4.1rem;
   background-color: #c62f2f;
   position: fixed;
   top: 0;
@@ -257,6 +285,7 @@ html {
 }
 .toplist[data-v-29d64576] {
   background-color: #fdfdfd;
+  padding-top: 4rem;
 }
 .list-type[data-v-29d64576] {
   display: -ms-flexbox;
@@ -277,7 +306,7 @@ html {
   height: 2px;
   left: 0;
   width: 6.5rem;
-  transition: all .3s;
+  transition: left .3s;
   background-color: #c62f2f;
 }
 .list-type-item[data-v-29d64576] {
@@ -293,7 +322,6 @@ html {
 
 .banner[data-v-dd5c128a] {
   position: relative;
-  margin-top: 4rem;
 }
 .banner-page[data-v-dd5c128a] {
   position: absolute;
@@ -335,15 +363,17 @@ html {
   width: 100vw;
 }
 
-.playfooter[data-v-769ce2e8] {
+.footer-warp[data-v-769ce2e8] {
   position: fixed;
-  bottom: 0.2rem;
+  bottom: 0;
   z-index: 99;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
-  height: 4rem;
+}
+.playfooter[data-v-769ce2e8] {
   display: -ms-flexbox;
   display: flex;
+  height: 4rem;
 }
 .playmsg[data-v-769ce2e8] {
   -ms-flex: 3;
@@ -383,12 +413,11 @@ html {
   color: #c62f2f;
 }
 .playbar[data-v-769ce2e8] {
-  position: absolute;
-  bottom: -0.2rem;
   background-color: #c62f2f;
-  width: 10vw;
+  width: 10%;
+  max-width: 100%;
+  overflow: hidden;
   height: .2rem;
-  left: 0;
 }
 
 .mask {
@@ -403,6 +432,7 @@ html {
   position: absolute;
   bottom: 0;
   width: calc(100% - 2rem);
+  height: 50%;
   background-color: #fbfbfb;
   padding: 0.5rem 1rem;
 }
@@ -418,6 +448,7 @@ html {
         flex: 5;
     text-align: center;
     padding-left: 3rem;
+    color: black;
 }
 .playlist-head .clearList {
     float: right;
@@ -427,7 +458,7 @@ html {
     text-align: center;
 }
 .playlist-art {
-  min-height: 50vh;
+  height: 100%;
   overflow: auto;
 }
 .playlist-art .list-li {
@@ -523,21 +554,11 @@ html {
   color: white;
 }
 
+.billboard[data-v-3a85c0b4] {
+  padding-bottom: 4rem;
+}
 .billboard-wrap[data-v-3a85c0b4] {
   padding-top: 1rem;
-}
-.board-title[data-v-3a85c0b4] {
-  margin-left: 2rem;
-  position: relative;
-}
-.board-title[data-v-3a85c0b4]:before {
-  width: 0.5rem;
-  background-color: #c62f2f;
-  height: 1.5rem;
-  display: block;
-  position: absolute;
-  left: -1rem;
-  content: '';
 }
 .billboard-item[data-v-3a85c0b4] {
   display: -ms-flexbox;
@@ -577,6 +598,7 @@ html {
 .playing[data-v-7e682f1e] {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   color: white;
 }
 .playing a[data-v-7e682f1e] {
@@ -612,7 +634,7 @@ html {
 }
 .playing .play-warp[data-v-7e682f1e] {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.9);
     display: -ms-flexbox;
     display: flex;
@@ -661,6 +683,7 @@ html {
 .playing .play-warp .playing-footer .foot-btn li[data-v-7e682f1e] {
           -ms-flex: 2;
               flex: 2;
+          cursor: pointer;
 }
 .playing .play-warp .playing-footer .foot-btn li .icon[data-v-7e682f1e] {
             color: white;
@@ -671,4 +694,32 @@ html {
         padding-top: 4rem;
 }
 
-/*# sourceMappingURL=app.ac80ad66b2eb92a70f65348885e69204.css.map*/
+.listdetail {
+  /*width:100vw;
+    height:100vh;*/
+  /*overflow: hidden;*/
+}
+.listdetail .list-head {
+    height: 3rem;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+.listdetail .list-img {
+    height: 6rem;
+}
+.listdetail .list-item {
+    height: 3rem;
+    display: -ms-flexbox;
+    display: flex;
+}
+.listdetail .list-item .list-num {
+      -ms-flex: 1;
+          flex: 1;
+}
+.listdetail .list-item .icon-song {
+      -ms-flex: 1;
+          flex: 1;
+}
+
+/*# sourceMappingURL=app.1315db010575b238ee16298d131c6986.css.map*/
