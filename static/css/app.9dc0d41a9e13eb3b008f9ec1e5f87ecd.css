@@ -20,6 +20,10 @@ li{
 }
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
 }
 @charset "UTF-8";
 /*
@@ -30,7 +34,6 @@ by https://github.com/derickweng
   /*为了在使用transition切换时router时，组件之间样式保持位置不相互影响,不过要注意样式width和height继承问题 */
   position: fixed;
   bottom: 0;
-  z-index: 1000;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -238,6 +241,12 @@ to {
   height: 1.5em;
   position: relative;
   border-radius: 50%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .icon-next:before, .icon-pre:before {
     content: '';
@@ -247,23 +256,40 @@ to {
     border-style: solid;
     border-color: transparent currentColor;
     border-width: 0.3em 0 0.3em 0.5em;
-    position: absolute;
-    top: 30%;
-    left: 35%;
 }
 .icon-next:after, .icon-pre:after {
     content: '';
     display: block;
-    width: 0.5em;
+    width: 0.7em;
     height: 0.1em;
     background-color: currentColor;
-    transform: rotate(90deg);
     position: absolute;
-    left: 50%;
     top: 45%;
+    left: 45%;
+    transform: rotate(90deg) translateY(50%);
 }
 .icon-pre {
   transform: rotate(-180deg);
+}
+.icon-song {
+  position: relative;
+}
+.icon-song, .icon-song:before, .icon-song:after {
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+.icon-song:before {
+    top: 150%;
+}
+.icon-song:after {
+    top: -150%;
+}
+.icon-song:before, .icon-song:after {
+    content: '';
+    display: block;
+    position: absolute;
 }
 
 .topheader[data-v-29d64576] {
@@ -634,7 +660,7 @@ to {
 }
 .playing .play-warp[data-v-7e682f1e] {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: rgba(0, 0, 0, 0.9);
     display: -ms-flexbox;
     display: flex;
@@ -658,68 +684,146 @@ to {
       -ms-flex: 2;
           flex: 2;
 }
-.playing .play-warp .playing-footer[data-v-7e682f1e] {
-      -ms-flex: 3;
-          flex: 3;
+.playing .playing-footer[data-v-7e682f1e] {
+    -ms-flex: 3;
+        flex: 3;
 }
-.playing .play-warp .playing-footer .progess[data-v-7e682f1e] {
-        width: 90%;
-        margin: 0 auto;
-        height: 0.5rem;
-        border-radius: 5px;
-        background: #c62f2f;
+.playing .playing-footer .progess[data-v-7e682f1e] {
+      width: 90%;
+      margin: 0 auto;
+      height: 0.5rem;
+      border-radius: 5px;
+      background: #c62f2f;
 }
-.playing .play-warp .playing-footer .foot-btn[data-v-7e682f1e] {
-        display: -ms-flexbox;
-        display: flex;
-        padding-left: 4rem;
-        -ms-flex-pack: center;
-            justify-content: center;
-        -ms-flex-align: center;
-            align-items: center;
-        height: 100%;
-        font-size: 2rem;
+.playing .playing-footer .foot-btn[data-v-7e682f1e] {
+      display: -ms-flexbox;
+      display: flex;
+      padding-left: 6rem;
+      -ms-flex-pack: center;
+          justify-content: center;
+      -ms-flex-align: center;
+          align-items: center;
+      height: 100%;
+      font-size: 2rem;
 }
-.playing .play-warp .playing-footer .foot-btn li[data-v-7e682f1e] {
-          -ms-flex: 2;
-              flex: 2;
-          cursor: pointer;
+.playing .playing-footer .foot-btn li[data-v-7e682f1e] {
+        -ms-flex: 2;
+            flex: 2;
+        cursor: pointer;
 }
-.playing .play-warp .playing-footer .foot-btn li .icon[data-v-7e682f1e] {
-            color: white;
-            margin: 0 auto;
+.playing .playing-footer .foot-btn li .icon[data-v-7e682f1e] {
+          color: white;
+          margin: 0 auto;
 }
-.playing .play-warp .playing-footer .icon-list-btn[data-v-7e682f1e] {
-        height: 4rem;
-        padding-top: 4rem;
+.playing .playing-footer .icon-list-btn[data-v-7e682f1e] {
+      height: 4rem;
+      padding-top: 4rem;
+}
+.playing .icon-back[data-v-7e682f1e] {
+    top: 0.9em;
 }
 
+.calcH {
+  height: calc(100vh - 4rem);
+}
+.maxH {
+  height: 100vh;
+}
 .listdetail {
-  /*width:100vw;
-    height:100vh;*/
-  /*overflow: hidden;*/
+  overflow: auto;
+}
+.listdetail .icon-back {
+    margin: 2rem 1rem;
 }
 .listdetail .list-head {
-    height: 3rem;
+    height: 4rem;
+    width: 100%;
     position: fixed;
     top: 0;
     z-index: 99;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 .listdetail .list-img {
-    height: 6rem;
+    height: 22rem;
+    width: 100%;
+}
+.listdetail .list-img img {
+      width: 100%;
+      height: 100%;
 }
 .listdetail .list-item {
-    height: 3rem;
+    height: 4rem;
     display: -ms-flexbox;
     display: flex;
 }
-.listdetail .list-item .list-num {
-      -ms-flex: 1;
-          flex: 1;
+.listdetail .list-num {
+    -ms-flex: 1;
+        flex: 1;
+    text-align: center;
+    line-height: 4rem;
 }
-.listdetail .list-item .icon-song {
-      -ms-flex: 1;
-          flex: 1;
+.listdetail .icon-song-wrap {
+    -ms-flex: 1;
+        flex: 1;
+    color: #d4d4d4;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 4rem;
+    border-bottom: 1px solid #f9f5f5;
+}
+.listdetail .icon-song-wrap .icon-song {
+      display: inline-block;
+}
+.listdetail .song {
+    -ms-flex: 5;
+        flex: 5;
+    border-bottom: 1px solid #f9f5f5;
+    cursor: pointer;
+}
+.listdetail .song .song-name, .listdetail .song .song-art {
+      display: block;
+      height: 2rem;
+}
+.listdetail .song .song-name {
+      line-height: 2.5rem;
+}
+.listdetail .song .song-art {
+      font-size: 0.8rem;
+      color: #aaa;
+      line-height: 2rem;
 }
 
-/*# sourceMappingURL=app.1315db010575b238ee16298d131c6986.css.map*/
+.song-add[data-v-38aa9ce6] {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.song-add .song-head[data-v-38aa9ce6] {
+    height: 2rem;
+    color: #aaa;
+    line-height: 2rem;
+    padding-left: 1rem;
+}
+.song-add .song-set[data-v-38aa9ce6] {
+    width: 100%;
+    background-color: #fbfbfb;
+    position: absolute;
+    bottom: 0;
+}
+.song-add .set-items[data-v-38aa9ce6] {
+    text-align: center;
+}
+.song-add .set-item[data-v-38aa9ce6] {
+    height: 3rem;
+    line-height: 3rem;
+}
+.song-add .set-item[data-v-38aa9ce6]:hover {
+      background-color: #ccc;
+      color: #c62f2f;
+}
+
+/*# sourceMappingURL=app.9dc0d41a9e13eb3b008f9ec1e5f87ecd.css.map*/
