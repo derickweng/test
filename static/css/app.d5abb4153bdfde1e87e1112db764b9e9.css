@@ -25,6 +25,9 @@ html {
          -ms-user-select: none;
              user-select: none;
 }
+a,button,input,li,div{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
 @charset "UTF-8";
 /*
 vue动画公共样式都取出来放这里了
@@ -375,14 +378,13 @@ to {
 }
 .slider-items[data-v-dd5c128a] {
   font-size: 0;
-  width: 500vw;
   overflow: hidden;
 }
 .slider-item[data-v-dd5c128a] {
   width: 100vw;
   float: left;
 }
-.slider-item > img[data-v-dd5c128a] {
+.slider-item .item-img[data-v-dd5c128a] {
   width: 100%;
 }
 
@@ -577,6 +579,11 @@ to {
   color: white;
 }
 
+.bill-loading img[data-v-3a85c0b4] {
+  display: block;
+  width: 5rem;
+  margin: 0 auto;
+}
 .billboard[data-v-3a85c0b4] {
   padding-bottom: 4rem;
 }
@@ -600,9 +607,14 @@ to {
   -ms-flex: 2;
       flex: 2;
   padding: 1rem 0.5rem;
+  overflow: hidden;
 }
 .ban-r li[data-v-3a85c0b4] {
   color: #777;
+  margin: 1rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .playbg[data-v-7e682f1e] {
@@ -687,7 +699,6 @@ to {
 }
 .playing .playing-footer .progess[data-v-7e682f1e] {
       width: 90%;
-      margin: 0 auto;
       height: 0.5rem;
       border-radius: 5px;
       background: #c62f2f;
@@ -720,47 +731,75 @@ to {
     top: 0.9em;
 }
 
-.calcH {
+@charset "UTF-8";
+.loading[data-v-369c4f22] {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1000;
+  top: 0;
+}
+.loading .loading_img[data-v-369c4f22] {
+    width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
+.calcH[data-v-369c4f22] {
   height: calc(100vh - 4rem);
 }
-.maxH {
+.maxH[data-v-369c4f22] {
   height: 100vh;
 }
-.listdetail {
+.listdetail[data-v-369c4f22] {
   overflow: auto;
+  top: 0;
+  /*解决路由切换时此页面向下一段距离*/
 }
-.listdetail .icon-back {
+.listdetail .hot[data-v-369c4f22] {
+    float: right;
+}
+.listdetail .list-title[data-v-369c4f22] {
+    display: inline-block;
+    vertical-align: top;
+}
+.listdetail .icon-wrap[data-v-369c4f22] {
+    display: inline-block;
+}
+.listdetail .icon-back[data-v-369c4f22] {
     margin: 2rem 1rem;
 }
-.listdetail .list-head {
+.listdetail .list-head[data-v-369c4f22] {
     height: 4rem;
     width: 100%;
     position: fixed;
     top: 0;
     z-index: 99;
     color: white;
+    line-height: 4rem;
     background-color: rgba(0, 0, 0, 0.2);
 }
-.listdetail .list-img {
+.listdetail .list-img[data-v-369c4f22] {
     height: 22rem;
     width: 100%;
 }
-.listdetail .list-img img {
+.listdetail .list-img img[data-v-369c4f22] {
       width: 100%;
       height: 100%;
 }
-.listdetail .list-item {
+.listdetail .list-item[data-v-369c4f22] {
     height: 4rem;
     display: -ms-flexbox;
     display: flex;
 }
-.listdetail .list-num {
+.listdetail .list-num[data-v-369c4f22] {
     -ms-flex: 1;
         flex: 1;
     text-align: center;
     line-height: 4rem;
 }
-.listdetail .icon-song-wrap {
+.listdetail .icon-song-wrap[data-v-369c4f22] {
     -ms-flex: 1;
         flex: 1;
     color: #d4d4d4;
@@ -769,26 +808,33 @@ to {
     line-height: 4rem;
     border-bottom: 1px solid #f9f5f5;
 }
-.listdetail .icon-song-wrap .icon-song {
+.listdetail .icon-song-wrap .icon-song[data-v-369c4f22] {
       display: inline-block;
 }
-.listdetail .song {
+.listdetail .song[data-v-369c4f22] {
     -ms-flex: 5;
         flex: 5;
     border-bottom: 1px solid #f9f5f5;
     cursor: pointer;
+    overflow: hidden;
 }
-.listdetail .song .song-name, .listdetail .song .song-art {
+.listdetail .song .song-name[data-v-369c4f22], .listdetail .song .song-art[data-v-369c4f22] {
       display: block;
       height: 2rem;
 }
-.listdetail .song .song-name {
+.listdetail .song .song-name[data-v-369c4f22] {
       line-height: 2.5rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 }
-.listdetail .song .song-art {
+.listdetail .song .song-art[data-v-369c4f22] {
       font-size: 0.8rem;
       color: #aaa;
       line-height: 2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 }
 
 .song-add[data-v-38aa9ce6] {
@@ -817,10 +863,10 @@ to {
 .song-add .set-item[data-v-38aa9ce6] {
     height: 3rem;
     line-height: 3rem;
-}
-.song-add .set-item[data-v-38aa9ce6]:hover {
-      background-color: #ccc;
-      color: #c62f2f;
+    /*&:hover{
+            background-color:#ccc;
+            color:$themeColor;
+        }*/
 }
 
-/*# sourceMappingURL=app.d15c3029d90cfa5031b677e0a24fb37c.css.map*/
+/*# sourceMappingURL=app.d5abb4153bdfde1e87e1112db764b9e9.css.map*/
