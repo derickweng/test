@@ -388,6 +388,11 @@ to {
   width: 100%;
 }
 
+.song-name[data-v-769ce2e8] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .footer-warp[data-v-769ce2e8] {
   position: fixed;
   bottom: 0;
@@ -404,6 +409,7 @@ to {
   -ms-flex: 3;
       flex: 3;
   padding: .5rem 0 0 1rem;
+  overflow: hidden;
 }
 .song-artist[data-v-769ce2e8] {
   color: #9c9c9c;
@@ -439,7 +445,7 @@ to {
 }
 .playbar[data-v-769ce2e8] {
   background-color: #c62f2f;
-  width: 10%;
+  width: 0;
   max-width: 100%;
   overflow: hidden;
   height: .2rem;
@@ -472,7 +478,6 @@ to {
     -ms-flex: 5;
         flex: 5;
     text-align: center;
-    padding-left: 3rem;
     color: black;
 }
 .playlist-head .clearList {
@@ -483,7 +488,7 @@ to {
     text-align: center;
 }
 .playlist-art {
-  height: 100%;
+  height: 90%;
   overflow: auto;
 }
 .playlist-art .list-li {
@@ -584,7 +589,7 @@ to {
   width: 5rem;
   margin: 0 auto;
 }
-.billboard[data-v-3a85c0b4] {
+.hasPlay[data-v-3a85c0b4] {
   padding-bottom: 4rem;
 }
 .billboard-wrap[data-v-3a85c0b4] {
@@ -685,6 +690,9 @@ to {
 .playing .play-warp .playing-art .lysrc-items[data-v-7e682f1e] {
         margin: 4rem 0;
 }
+.playing .play-warp .playing-art .lysrc-items > li[data-v-7e682f1e] {
+        margin: 1rem 0;
+}
 .playing .play-warp .playing-head[data-v-7e682f1e] {
       width: 100%;
       height: 4rem;
@@ -698,7 +706,7 @@ to {
         flex: 3;
 }
 .playing .playing-footer .progess[data-v-7e682f1e] {
-      width: 90%;
+      width: 0%;
       height: 0.5rem;
       border-radius: 5px;
       background: #c62f2f;
@@ -747,6 +755,7 @@ to {
     left: 25%;
 }
 .calcH[data-v-369c4f22] {
+  padding-bottom: 4rem;
   height: calc(100vh - 4rem);
 }
 .maxH[data-v-369c4f22] {
@@ -850,6 +859,9 @@ to {
     color: #aaa;
     line-height: 2rem;
     padding-left: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .song-add .song-set[data-v-38aa9ce6] {
     width: 100%;
@@ -861,12 +873,8 @@ to {
     text-align: center;
 }
 .song-add .set-item[data-v-38aa9ce6] {
-    height: 3rem;
-    line-height: 3rem;
-    /*&:hover{
-            background-color:#ccc;
-            color:$themeColor;
-        }*/
+    height: 5rem;
+    line-height: 5rem;
 }
 
-/*# sourceMappingURL=app.d5abb4153bdfde1e87e1112db764b9e9.css.map*/
+/*# sourceMappingURL=app.a287a7b0d2176c23e763657fedaa53a1.css.map*/
